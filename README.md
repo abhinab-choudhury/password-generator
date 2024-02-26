@@ -1,5 +1,7 @@
 <div style="diplay:flex">
   <img width="100" height="100" src="https://img.icons8.com/officel/100/re-enter-pincode.png" alt="re-enter-pincode"/>
+  <img width="100" height="100" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/100/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png" alt="external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo"/>
+  <img width="100" height="100" src="https://img.icons8.com/color/100/tailwindcss.png" alt="tailwindcss"/>  
 </div>
 
 # React Password Generator App
@@ -50,7 +52,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin feature/your-feature-name`).
 5. Create a new Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
