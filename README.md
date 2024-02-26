@@ -1,5 +1,5 @@
 <div style="diplay:flex">
-  <img width="100" height="100" src="https://img.icons8.com/ios/50/re-enter-pincode.png" alt="re-enter-pincode"/>
+  <img width="100" height="100" src="https://img.icons8.com/officel/100/re-enter-pincode.png" alt="re-enter-pincode"/>
 </div>
 
 # React Password Generator App
