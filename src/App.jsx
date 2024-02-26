@@ -59,7 +59,7 @@ function App() {
             </p>
           </div>
           <form className='mt-8'>
-            <div className='flex place-content-center mx-auto my-auto'>
+            <div className='flex place-content-center mx-5'>
               <input ref={passwordRef} id="password" type='text' className='h-16 w-80 rounded-s border-2 border-black rounded overflow-hidden px-4' value={password} readOnly />
               <button onClick={copyHandler} className='hover:bg-black hover:text-white mx-1 px-1 py-1 h-16 w-16 font-bold rounded border-black border mt-auto mb-auto'>Copy</button>
             </div>
