@@ -8,6 +8,8 @@
 
 This is a simple password generator web application built using React and React Hooks. The app allows users to generate random passwords with customizable length and character options.
 
+[Live](https://password-generator-one-black.vercel.app/)
+
 ## Features
 
 - Generate random passwords with customizable length.
@@ -26,14 +28,22 @@ This is a simple password generator web application built using React and React 
 ## Installation
 
 1. Clone the repository:
-
+```bash
+  git clone https://github.com/abhinab-choudhury/password-generator.git 
+```
 2. Navigate to the project directory:
-
+``` bash
+  cd password-generator
+```
 3. Install dependencies:
-
+```bash
+   npm install
+```
 4. Run the app:
-
-5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+   npm run dev
+```
+5. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 ## Usage
 
