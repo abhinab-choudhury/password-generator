@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   let [passwordLength, setPasswordlength] = useState(8)
+  let [strength, setStrength] = useState("Strong")
   let [containsUppercase, setContainsUppercase] = useState(false)
   let [containsNumber, setContainsNumbers] = useState(false)
   let [containsSpecialCharacters, setContainsSpecialCharacters] = useState(false)
@@ -12,7 +13,7 @@ function App() {
   const generatePassword = useCallback(() => {
     let characters = "qwertyuiopasdfghjklzxcvbnm"
     let uppercase = "QWERTYUIOPASDFGHJKLZXCVBNM"
-    let specialCharacter = "~!@#$%^&*(){}[]:;|,<>.?_+="
+    let specialCharacter = "!@#$%^&*?_~<>(){}[]|+-"
     let num = "1234567890"
 
     if (containsUppercase) {
@@ -32,6 +33,123 @@ function App() {
       pass += characters[idx]
     }
     setPassword(pass)
+
+    let passordStrength = () => {
+      let score = 0;
+      let basescore = 0;
+      const minbaseLength = 8;
+
+      let count = {
+        excess: 0,
+        uppercase: 0,
+        specialcharacter: 0,
+        numbers: 0,
+      }
+
+      let points = {
+        extra: 3,
+        uppercase: 4,
+        numbers: 5,
+        specialcharacter: 5,
+        combo: 0,
+        onlyNumber: 0,
+        onlyLowercase: 0,
+        unique: 0,
+        repetation: 0
+      }
+
+      if (pass.length >= minbaseLength) {
+        basescore = 50;
+
+        // Calculating password passord Strength 
+        for (let i = 0; i < pass.length; i++) {
+          // count uppercase characters
+          if (uppercase.includes(pass.charAt(i))) {
+            count.uppercase++;
+          }
+          // count numbers
+          if (num.includes(pass.charAt(i))) {
+            count.numbers++;
+          }
+          // count specialcharacter
+          if (specialCharacter.includes(pass.charAt(i))) {
+            count.specialcharacter++;
+          }
+        }
+        // bouns for extralength 
+        count.excess = pass.length - minbaseLength;
+
+        // bouns for password including numbers uppercase and specialcharacter : +25
+        if (count.numbers && count.uppercase && count.specialcharacter) {
+          points.combo = 25;
+        }
+
+        // penalty for onlyNumber in a password = -35
+        let flag = true;
+        for (let i = 0; i < pass.length; i++) {
+          if (!num.includes(pass.charAt(i))) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          points.onlyNumber = -35;
+        }
+
+        // penalty for onlyLowercase in a password = -15
+        flag = true;
+        for (let i = 0; i < pass.length; i++) {
+          if (!characters.includes(pass.charAt(i))) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          points.onlyLowercase = -15;
+        }
+
+        // penalty for repeating same sequence
+        let countUniqueCharacters = new Set(pass.toLowerCase()).size;
+
+        if (countUniqueCharacters <= 4) {
+          points.unique = -100;
+        }
+
+        // penalty for repeated pattern
+        if (/([a-z0-9]{3,})\1/.test(pass)) {
+          points.repetation = -50;
+        }
+
+      } else {
+        basescore = 0;
+      }
+
+      // Calculating score
+      score = basescore + (count.uppercase * points.uppercase) + (count.numbers * points.numbers) + (count.specialcharacter * points.specialcharacter) + (count.excess * points.extra) + points.combo + points.repetation + points.unique + points.onlyNumber + points.onlyLowercase;
+
+      // Updated the password Strength
+      if (pass == "") {
+        setStrength("Very Very Weak!!!")
+      } else if (pass.length < minbaseLength) {
+        setStrength("Very Weak")
+      } else if (score < 50) {
+        setStrength("Weak")
+      } else if (score >= 50 && score < 75) {
+        setStrength("Average")
+      } else if (score > 75 && score < 100) {
+        setStrength("Strong")
+      } else if (score >= 100) {
+        setStrength("Very Strong")
+      }
+
+      console.log(count)
+      console.log(points)
+      console.log(score)
+
+    }
+
+    setStrength(passordStrength)
+
   }, [passwordLength, containsUppercase, containsSpecialCharacters, containsNumber])
 
   useEffect(() => {
@@ -54,7 +172,7 @@ function App() {
         <div className='w-full'>
           <div className='flex align-middle justify-center h-16'>
             <img className='object-contain mx-3' width="50" height="50" src="https://img.icons8.com/ios/50/re-enter-pincode.png" alt="re-enter-pincode" />
-            <p className='text-3xl font-bold'>
+            <p className='flex text-3xl font-bold'>
               Password Generator
             </p>
           </div>
@@ -62,6 +180,12 @@ function App() {
             <div className='flex place-content-center mx-5'>
               <input ref={passwordRef} id="password" type='text' className='h-16 w-80 rounded-s border-2 border-black rounded overflow-hidden px-4' value={password} readOnly />
               <button onClick={copyHandler} className='hover:bg-black hover:text-white mx-1 px-1 py-1 h-16 w-16 font-bold rounded border-black border mt-auto mb-auto'>Copy</button>
+            </div>
+            <div className='flex my-2 justify-center items-center'>
+              <span className='font-extrabold text-xl'>Password Strength : </span>
+              <span className='w-fit bg-green-500 border border-green-400 text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded'>
+                {strength}
+              </span>
             </div>
             <div className='flex justify-center mx-auto my-auto'>
               <div className='block m-8'>
@@ -111,9 +235,9 @@ function App() {
             </div>
           </div >
 
-        </div>
+        </div >
 
-      </div>
+      </div >
     </>
   )
 }
