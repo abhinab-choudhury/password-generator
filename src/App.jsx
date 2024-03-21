@@ -167,7 +167,7 @@ function App() {
         <div className='w-full'>
           <div className='flex align-middle justify-center h-16'>
             <img className='object-contain mx-3' width="50" height="50" src="https://img.icons8.com/ios/50/re-enter-pincode.png" alt="re-enter-pincode" />
-            <p className='flex text-3xl font-bold'>
+            <p className='flex text-3xl mobile:text-2xl font-bold'>
               Password Generator
             </p>
           </div>
