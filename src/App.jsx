@@ -141,11 +141,6 @@ function App() {
       } else if (score >= 100) {
         setStrength("Very Strong")
       }
-
-      console.log(count)
-      console.log(points)
-      console.log(score)
-
     }
 
     setStrength(passordStrength)
