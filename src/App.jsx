@@ -181,12 +181,6 @@ function App() {
               <input ref={passwordRef} id="password" type='text' className='h-16 w-80 rounded-s border-2 border-black rounded overflow-hidden px-4' value={password} readOnly />
               <button onClick={copyHandler} className='hover:bg-black hover:text-white mx-1 px-1 py-1 h-16 w-16 font-bold rounded border-black border mt-auto mb-auto'>Copy</button>
             </div>
-            <div className='flex my-2 justify-center items-center'>
-              <span className='font-extrabold text-xl'>Password Strength : </span>
-              <span className='w-fit bg-green-500 border border-green-400 text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded'>
-                {strength}
-              </span>
-            </div>
             <div className='flex justify-center mx-auto my-auto'>
               <div className='block m-8'>
                 <input className='ml-3 mr-1 size-5 align-middle' type='checkbox' name='uppercase' onChange={() => { setContainsUppercase((prev) => !prev) }} />
