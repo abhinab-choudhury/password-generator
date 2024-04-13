@@ -8,6 +8,7 @@ function App() {
   let [containsNumber, setContainsNumbers] = useState(false)
   let [containsSpecialCharacters, setContainsSpecialCharacters] = useState(false)
   let [password, setPassword] = useState("")
+  let [bgColor, setBgColor] = useState("")
   let passwordRef = useRef(null)
 
   const generatePassword = useCallback(() => {
@@ -129,16 +130,22 @@ function App() {
 
       // Updated the password Strength
       if (pass == "") {
+        setBgColor('bg-red-600 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Very Very Weak!!!")
       } else if (pass.length < minbaseLength) {
+        setBgColor('bg-red-500 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Very Weak")
       } else if (score < 50) {
+        setBgColor('bg-orange-600 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Weak")
       } else if (score >= 50 && score < 75) {
+        setBgColor('bg-orange-400 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Average")
       } else if (score > 75 && score < 100) {
+        setBgColor('bg-green-400 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Strong")
       } else if (score >= 100) {
+        setBgColor('bg-green-600 w-fit border border-current text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded')
         setStrength("Very Strong")
       }
     }
@@ -179,7 +186,7 @@ function App() {
             <div className='flex my-2 justify-center items-center'>
               <div className='my-2'>
                 <span className='font-extrabold text-xl'>Password Strength : </span>
-                <span className='w-fit bg-green-500 border border-green-400 text-gray-50 font-bold mx-1 text-xl px-2 py-1 rounded'>
+                <span className={bgColor}>
                   {strength}
                 </span>
               </div>
