@@ -232,7 +232,7 @@ function App() {
                 </a>
               </div>
               <div className='flex w-full justify-center align-middle m-3'>
-                <a href='https://www.instagram.com/_abhinab_choudhury_/'>
+                <a href='https://www.instagram.com/abhinab_choudhury_/'>
                   <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/instagram-new--v1.png" alt="instagram-new--v1" />
                 </a>
               </div>
